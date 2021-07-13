@@ -2,6 +2,11 @@ class Domino
     
     attr_accessor :top, :bottom
 
+    def initialize(top = 0, bottom = 0)
+        @top = top
+        @bottom = bottom
+    end
+    
     def pips(value)
         pip_positions = { 0 => [],
                         1 => [5], 
@@ -18,4 +23,19 @@ class Domino
     def to_s
         puts pips(@top) + "\n-----\n" + pips(@bottom) + "\n"
     end
+
+    def self.double_sixes
+        dominoes = []
+        for i in 0..6
+            for j in 0..i
+                dominoes << Domino.new(i, j)
+            end
+        end
+        return dominoes
+    end
+end
+
+dominoes = Domino.double_sixes
+for domino in dominoes
+    puts domino.to_s
 end
