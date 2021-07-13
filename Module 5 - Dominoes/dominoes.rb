@@ -6,7 +6,7 @@ class Domino
         @top = top
         @bottom = bottom
     end
-    
+
     def pips(value)
         pip_positions = { 0 => [],
                         1 => [5], 
@@ -35,7 +35,19 @@ class Domino
     end
 end
 
+def swap_tops_and_bottoms(dominoes)
+    dominoes.map{ |domino| domino.top, domino.bottom = domino.bottom, domino.top}
+    return dominoes
+end
+
 dominoes = Domino.double_sixes
+for domino in dominoes
+    puts domino.to_s
+end
+
+sleep(4)
+
+dominoes = swap_tops_and_bottoms(dominoes)
 for domino in dominoes
     puts domino.to_s
 end
