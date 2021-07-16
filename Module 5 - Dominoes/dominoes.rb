@@ -1,6 +1,12 @@
 class Domino
     
+    include Enumerable
+
     attr_accessor :top, :bottom
+
+    def each(&block)
+        block.call
+    end
 
     def initialize(top = 0, bottom = 0)
         @top = top
@@ -40,6 +46,10 @@ def swap_tops_and_bottoms(dominoes)
     return dominoes
 end
 
+def find_dominoes_with(dominoes, value)
+    dominoes.find_all{ |d| d.top == value || d.bottom == value }
+end
+
 dominoes = Domino.double_sixes
 for domino in dominoes
     puts domino.to_s
@@ -49,5 +59,12 @@ sleep(4)
 
 dominoes = swap_tops_and_bottoms(dominoes)
 for domino in dominoes
+    puts domino.to_s
+end
+
+sleep(4)
+
+result = find_dominoes_with(dominoes, 1)
+for domino in result
     puts domino.to_s
 end
